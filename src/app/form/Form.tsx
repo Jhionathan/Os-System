@@ -54,8 +54,8 @@ export default function FormContent() {
         defaultValues: {
             name: "",
             content: "",
-            urgency: "3",
-            priority: "3",
+            urgency: "",
+            priority: "",
         },
     })
 
@@ -66,7 +66,6 @@ export default function FormContent() {
             headers: {
                 'Content-Type': 'application/json',
                 'App-Token': 'mU597Gm8DDr3FskLzvMeZ5oLb7BnNVefIe2F9dXz',
-                // 'Session-Token': '1la4iqfc6akcdgglranretjj4p'
                 'Session-Token': token
             },
             body: JSON.stringify({
@@ -74,7 +73,7 @@ export default function FormContent() {
                     name: data.name,
                     content: data.content,
                     urgency: data.urgency,
-                    priority: data.priority
+                    priority: data.priority,
                 }
             })
         });
@@ -132,11 +131,14 @@ export default function FormContent() {
                             <FormItem className="w-[600px]">
                                 <FormLabel>Urgência</FormLabel>
                                 <FormControl>
-                                    <Select>
+                                    <Select
+                                        value={field.value}
+                                        onValueChange={(value) => field.onChange(value)}
+                                    >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Selecione..." />
                                         </SelectTrigger>
-                                        <SelectContent {...field}>
+                                        <SelectContent>
                                             <SelectItem value="1">Muito Baixa</SelectItem>
                                             <SelectItem value="2">Baixa</SelectItem>
                                             <SelectItem value="3">Media</SelectItem>
@@ -156,11 +158,14 @@ export default function FormContent() {
                             <FormItem className="w-[600px]">
                                 <FormLabel>Prioridade</FormLabel>
                                 <FormControl>
-                                    <Select>
+                                    <Select
+                                        value={field.value}
+                                        onValueChange={(value) => field.onChange(value)}
+                                    >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Selecione..." />
                                         </SelectTrigger>
-                                        <SelectContent {...field}>
+                                        <SelectContent>
                                             <SelectItem value="1">Muito Baixa</SelectItem>
                                             <SelectItem value="2">Baixa</SelectItem>
                                             <SelectItem value="3">Media</SelectItem>
